@@ -23,7 +23,7 @@ export default function ImgWindow(){
 
     useEffect(() => {
         // attempt to set a sensible initial image from a variety of shapes
-        const firstButton = selectedItem?.child_items?.[0];
+        const firstButton = selectedItem?.buttons?.[0];
         
         if (firstButton){
             if (firstButton.link) {
@@ -59,7 +59,7 @@ export default function ImgWindow(){
         if (Array.isArray(button.imgs) && button.imgs[0]) return button.imgs[0].img || button.imgs[0];
         return null;
     }
-    const buttons = selectedItem?.child_items || []
+    const buttons = selectedItem?.buttons || []
 
     // JSX
         return (
