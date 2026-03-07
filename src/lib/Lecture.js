@@ -14,7 +14,7 @@ export default function Lecture(){
 
     useEffect(() => {
         console.log(selectedItem)
-        const newSource = selectedItem?.buttons?.[0]?.load;
+        const newSource = selectedItem?.load;
         setSource(newSource)
     }, [selectedItem])
 

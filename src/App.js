@@ -22,7 +22,7 @@ function App() {
     const fetchData = async () => {
         console.log("Here")
         try {
-            const response = await fetch('./output_data.json');
+            const response = await fetch('./lab_data.json');
             const json = await response.json()
 
             setData(json)

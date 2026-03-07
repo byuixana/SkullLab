@@ -1,6 +1,6 @@
 /**
  * A component that displays video content in an iframe.
- * Loads video URLs from the selected item's 'buttons'.
+ * Loads video URLs from the selected item's 'child_items'.
  *
  * @returns {JSX.Element} An iframe displaying video content or a "No data" message
  */
@@ -15,7 +15,7 @@ export default function VideoPlayer(){
 
     useEffect(() => {
         console.log(selectedItem)
-        const newSource = selectedItem?.buttons?.[0]?.link;
+        const newSource = selectedItem?.child_items?.[0]?.video_link;
         setSource(newSource)
     }, [selectedItem])
 

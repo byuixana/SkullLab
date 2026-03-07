@@ -14,6 +14,7 @@ export default function ImgWindow(){
     
     const [img, setImg] = useState(null);
     const audioRef = useRef(null);
+
     // Hooks
     useEffect(() => {
         audioRef.current = new Audio(selectedItem.sound)
@@ -22,7 +23,7 @@ export default function ImgWindow(){
 
     useEffect(() => {
         // attempt to set a sensible initial image from a variety of shapes
-        const firstButton = selectedItem?.buttons?.[0];
+        const firstButton = selectedItem?.child_items?.[0];
         
         if (firstButton){
             if (firstButton.link) {
@@ -52,13 +53,13 @@ export default function ImgWindow(){
     // vars and helpers
     function linkForButton(button){
         if (!button) return null;
-        if (button.link) return button.link;
+        if (button.img) return button.img;
         if (typeof button.img === 'string') return button.img;
-        if (Array.isArray(button.img) && button.img[0]) return button.img[0].link || button.img[0];
-        if (Array.isArray(button.imgs) && button.imgs[0]) return button.imgs[0].link || button.imgs[0];
+        if (Array.isArray(button.img) && button.img[0]) return button.img[0].img|| button.img[0];
+        if (Array.isArray(button.imgs) && button.imgs[0]) return button.imgs[0].img || button.imgs[0];
         return null;
     }
-    const buttons = selectedItem?.buttons || []
+    const buttons = selectedItem?.child_items || []
 
     // JSX
         return (
@@ -68,7 +69,11 @@ export default function ImgWindow(){
                         {       
                                 buttons.map( (button, index) => {
                                     const link = linkForButton(button);
-                                    return (<button className=" bg-gray-600 hover:bg-gray-300 px-2 h-7 w-[%10] text-white" key={index} onClick={() => link ? setImg(link) : null}>{button.label}</button>)
+                                    return button.label ? (
+                                        <button className=" bg-gray-600 hover:bg-gray-300 px-2 h-7 w-[%10] text-white" key={index} onClick={() => link ? setImg(link) : null}>
+                                            {button.label}
+                                        </button>
+                                    ) : null;
                                 })
                                 
                             }
