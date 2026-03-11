@@ -11,9 +11,9 @@ import { createContext, useContext, useState } from "react";
 
 const SelectionContext = createContext(0);
 
-export default function SelectionContextProvider({ children }) {
+export default function SelectionContextProvider({ children, initialSelectedItem = {} }) {
     // Hooks
-    const [selectedItem, setSelected] = useState({})
+    const [selectedItem, setSelected] = useState(initialSelectedItem)
 
     // Provider
     return <SelectionContext.Provider value = {{ selectedItem, setSelected}}>{ children }</SelectionContext.Provider>

@@ -16,19 +16,16 @@ import SectionTreeView from './SectionTreeView'
 import { HiMenu } from 'react-icons/hi';
 import { createPortal } from 'react-dom';
 
-export default function SectionMenu({ week1, week2, selectedItem, onSelect }){
+function MobileMenu({ week1, week2 }){
 
-    //Is the menu open?
-    const [open, setOpen] = useState(false)
     
-    // Hooks
 
-    //Helpers
-    // week 1 and 2 will be dictionaries with names
-    console.log("Rendering with open =", open)
+        //Is the menu open?
+        const [open, setOpen] = useState(false)
+    
     const menu = (
-        <React.Fragment>
-                <button
+    <React.Fragment>
+    <button
                     onClick={() => {
                         console.log("Button clicked, open is:", open);
                         setOpen(true)}}
@@ -76,8 +73,44 @@ export default function SectionMenu({ week1, week2, selectedItem, onSelect }){
                         </nav>  
                        
                     </aside>
-                
-        </React.Fragment>
-    )
+                </React.Fragment>
+        )
     return createPortal(menu, document.body);
+}
+
+function DesktopMenu({ week1, week2 }){
+    return (
+        <aside className="flex flex-col h-full w-72 bg-[#1a5e80] shadow-md overflow-auto">
+            <nav className='w-full flex-1'>
+                <SectionTreeView className="tree" section={ week1.title } data={ week1.data }/>
+                <SectionTreeView className="tree" section={ week2.title } data={ week2.data }/>
+            </nav>  
+        </aside>
+    )
+}
+
+export default function SectionMenu({ week1, week2, selectedItem, onSelect }){
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 850);
+        
+        // Set initial state
+        handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+}, []);
+    
+    // Hooks
+
+    //Helpers
+    // week 1 and 2 will be dictionaries with names
+    console.log("Rendering with isMobile =", isMobile)
+    return (
+        <>
+            {isMobile ? <MobileMenu week1={week1} week2={week2} /> : <DesktopMenu week1={week1} week2={week2} />}
+        </>
+    )
 }

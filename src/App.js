@@ -8,15 +8,13 @@ import { useState, useEffect } from 'react'
 import './App.css';
 import Header from './lib/Header.js'
 import SectionMenu from './lib/SectionMenu.js';
-import ImgWindow2 from './lib/ImgWindow.js'
-import VideoPlayer from './lib/VideoPlayer.js'
 import ContentWindow from './lib/ContentWindow.js';
 import SelectionContextProvider from './context/SelectionContext.js';
 
 function App() {
 
-  const [selectedItem, setSelectedItem] = useState({});
   const [data, setData] = useState(null)
+  const [initialSelectedItem, setInitialSelectedItem] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +25,8 @@ function App() {
 
             setData(json)
             
-            setSelectedItem(json["week1"]["data"][2]["children"][0])
+            setInitialSelectedItem(json["week1"]["data"][1])
+            console.log(json["week1"]["data"][1])
             
         } catch (error){
             console.error("Could not fetch data:", error)
@@ -38,17 +37,22 @@ function App() {
 
     }, [])
 
+  // Only render the provider once we have both data and initial selected item
+  if (!data || !initialSelectedItem) {
+    return <div>Loading...</div>
+  }
+
   return (
-    <SelectionContextProvider>
-        {data && 
-          (
-              <>
-                  <Header sectionTitle={"Skull Lab"}/>
-                  <SectionMenu week1={data.week1} week2={data.week2} />
-                  <ContentWindow />
-              </>
-          )
-        }
+    <SelectionContextProvider initialSelectedItem={initialSelectedItem}>
+        <div className="flex flex-col h-screen">
+            <Header sectionTitle={"Skull Lab"}/>
+            <div className="flex flex-1 overflow-hidden">
+                <SectionMenu week1={data.week1} week2={data.week2} />
+                <div className="flex-1 overflow-auto">
+                    <ContentWindow />
+                </div>
+            </div>
+        </div>
     </SelectionContextProvider>
   );
 }

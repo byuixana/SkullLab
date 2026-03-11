@@ -19,16 +19,14 @@ export default function Lecture(){
     }, [selectedItem])
 
     return (
-        <div
-        className="
-        shadow-black
-        w-screen
-        h-screen">
-            <iframe src={pageSource} 
-            className="w-screen h-screen"
-            style={{border: "none"}}
-            allowFullScreen 
-            title="4_1_1_intro_bone_anat"></iframe>
+        <div className="w-full h-full">
+            <iframe 
+                src={pageSource} 
+                className="w-full h-full"
+                style={{border: "none"}}
+                allowFullScreen 
+                title="4_1_1_intro_bone_anat"
+            />
         </div>
     )
 }

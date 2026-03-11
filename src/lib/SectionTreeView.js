@@ -29,6 +29,14 @@ export default function SectionTreeView({data, section}) {
         return map;
     }
 
+    const convertIdsToStrings = (items) => {
+        return items.map(item => ({
+            ...item,
+            id: String(item.id),
+            children: item.children ? convertIdsToStrings(item.children) : []
+        }));
+    }
+
     function findItem(id, map){
         const selectedItem = map[id]
         return selectedItem
@@ -37,15 +45,23 @@ export default function SectionTreeView({data, section}) {
     // In-component variable
 
     const map = createMap(data);
+    const stringIdData = convertIdsToStrings(data);
 
     return <div className = "container">
                 <h3> { section } </h3>
                 <RichTreeView 
-                items = { data }
+                items = { stringIdData }
                 onItemClick = {(event, itemId) => {
                     // Find the element within data
                     const item = findItem(itemId, map)
-                    setSelected(item)
+                    
+                    // Check if this is an external HTML link that should open in new tab
+                    if (item?.type === 'html' && item?.child_items?.[0]?.page) {
+                        window.open(item.child_items[0].page, '_blank', 'noopener,noreferrer');
+                    } else {
+                        setSelected(item)
+                    }
+                    
                     console.log(item)
                 }}
                 sx = {{ width: "100%"}}

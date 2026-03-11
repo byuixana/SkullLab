@@ -1898,8 +1898,7 @@
             "children": [],
             "child_items": [
               {
-                "page": "Pages/4_1_3_skull_3D.html",
-                "img": "Pages/4_1_3_skull_3D.html"
+                "load": "Pages/4_1_3_skull_3D.html"
               }
             ]
           },
@@ -1910,8 +1909,7 @@
             "children": [],
             "child_items": [
               {
-                "page": "https://content.byui.edu/file/24be55b8-db82-4908-9cd9-b9282cafd6c6/1/Skull/index.html",
-                "img": "https://content.byui.edu/file/24be55b8-db82-4908-9cd9-b9282cafd6c6/1/Skull/index.html"
+                "page": "https://content.byui.edu/file/24be55b8-db82-4908-9cd9-b9282cafd6c6/1/Skull/index.html"
               }
             ]
           }
@@ -1921,6 +1919,7 @@
       {
         "id": 91,
         "label": "4.1.4 - Skull Videos",
+        "load": "Pages/4_1_4_TA video intro.html",
         "children": [
           {
             "id": 92,
@@ -2039,13 +2038,12 @@
         "id": 102,
         "label": "4.2.1 - Practice Some Descriptions",
         "children": [],
-        "child_items": [
-          {}
-        ]
+        "load": "Pages/4_2_1_descriptions.html"
       },
       {
         "id": 103,
         "label": "4.2.2 - Practice with 3D",
+        "load": "Pages/4_1_3_skull_3D.html",
         "children": [
           {
             "id": 104,
@@ -2054,8 +2052,7 @@
             "children": [],
             "child_items": [
               {
-                "page": "https://content.byui.edu/file/70ddde1f-1506-4ed8-8b4b-fd7562148ad6/1/Skull%20Clickable/index.html",
-                "img": "https://content.byui.edu/file/70ddde1f-1506-4ed8-8b4b-fd7562148ad6/1/Skull%20Clickable/index.html"
+                "page": "https://content.byui.edu/file/70ddde1f-1506-4ed8-8b4b-fd7562148ad6/1/Skull%20Clickable/index.html"
               }
             ]
           },
@@ -2066,8 +2063,7 @@
             "children": [],
             "child_items": [
               {
-                "page": "https://content.byui.edu/file/70ddde1f-1506-4ed8-8b4b-fd7562148ad6/1/Skull%20Find/index.html",
-                "img": "https://content.byui.edu/file/70ddde1f-1506-4ed8-8b4b-fd7562148ad6/1/Skull%20Find/index.html"
+                "page": "https://content.byui.edu/file/70ddde1f-1506-4ed8-8b4b-fd7562148ad6/1/Skull%20Find/index.html"
               }
             ]
           }
@@ -2077,16 +2073,19 @@
         "id": 106,
         "label": "4.2.3 - Try Naming Some Pictures",
         "children": [],
+        "load": "powerpoint/Skull_misc1/index.html",
         "child_items": [
           {}
         ]
       },
       {
         "id": 107,
-        "label": "4.2.4 - [DOWNLOAD] Flashcards",
+        "label": "4.2.4 - Go to Flashcards",
         "children": [],
         "child_items": [
-          {}
+          {
+              "page": "LINK HERE"
+          }
         ]
       }
     ]
